@@ -1,0 +1,9 @@
+{
+  "collected_started_utc": "2026-06-10T16:55:24.771100+00:00",
+  "collected_finished_utc": "2026-06-10T16:56:28.236238+00:00",
+  "wikipedia_api": "https://en.wikipedia.org/w/api.php",
+  "census_file": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/totals/NST-EST2024-ALLDATA.csv",
+  "user_agent": "VirginiaWikipediansResearch/0.1 (https://github.com/chancelorassiamah; assiamah.ch@gmail.com) python-requests",
+  "n_states": 51,
+  "max_category_depth": 3
+}
