@@ -1,8 +1,23 @@
 # How many Wikipedia contributors are from Virginia?
 
-A mini data science project answering a question sparked by a random
-[YouTube comment](https://www.youtube.com/watch?v=aFHxsS6uv5g&lc=UgzPMAPWOXq9htO8tOZ4AaABAg.ACssRWZFXwJACuJMHlcyQe):
-how many of the people who write Wikipedia are actually from Virginia?
+A mini data science project fact-checking a
+[YouTube comment](https://www.youtube.com/watch?v=aFHxsS6uv5g&lc=UgzPMAPWOXq9htO8tOZ4AaABAg.ACssRWZFXwJACuJMHlcyQe)
+(a reply on TREY the Explainer's *"The Rarest Signature"*, under a comment
+praising Wikipedia's citations) that claimed:
+
+> *"Plus, can anyone answer why the large majority (80+%) of 'Contributors'
+> have addresses in Virginia? 😂😂"*
+
+That's a concrete, falsifiable claim — so instead of arguing, we test it
+with real data.
+
+**Verdict: false by a factor of ~30.** Self-identified Virginian editors are
+**2.8%** of self-identified US editors (405 people), ranked #12 of 51 states
+by raw count and #23 per capita. Virginia over-indexes modestly (+14% vs its
+population's prediction) — real, but nothing like 80%. The claim's kernel of
+truth: Wikipedia's *servers* are in Virginia (Wikimedia's primary data center
+is in Ashburn, VA), so IP lookups of wikipedia.org or raw traffic really do
+say "Virginia" — about the infrastructure, not the people.
 
 ## Why this is a trickier question than it sounds
 
@@ -58,6 +73,40 @@ uv run jupyter nbconvert --to notebook --execute --inplace notebooks/01_analysis
 - `src/collect.py` — data collection (Wikipedia API + Census), writes `data/`
 - `data/` — committed snapshot of collected data (tidy CSVs + raw responses)
 - `notebooks/01_analysis.ipynb` — the analysis and findings
+
+## Expanding the scope
+
+Other legal data avenues for a future v2, roughly in order of effort:
+
+1. **User-page text mining** — search the User namespace for location
+   userboxes and free-text statements ("I live in Richmond, VA") via the
+   MediaWiki API. Catches self-identifiers who never used the category;
+   the most natural NLP extension of the current pipeline and would likely
+   raise the 405 figure meaningfully.
+2. **WikiProject Virginia + meetup pages** — participant lists for
+   [WikiProject Virginia](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Virginia)
+   and DC/Virginia meetup and edit-a-thon pages are public records of
+   engaged local editors.
+3. **Wikimedia Geoeditors dataset** —
+   [official monthly active-editor counts by country](https://dumps.wikimedia.org/other/geoeditors/).
+   Country-level only (state-level is withheld for privacy) but useful for
+   calibration: what share of US editors does self-identification capture?
+4. **Anonymous-edit IP geolocation** — IPs of unregistered editors are
+   public in page histories; geolocate with MaxMind GeoLite2 and filter
+   known cloud/data-center ASNs to reduce the Northern-Virginia bias.
+   A closing window: Wikipedia's rollout of temporary accounts masks IPs
+   going forward.
+5. **Behavioral inference ("locals edit local")** — academic literature
+   shows editors disproportionately edit geotagged articles near them.
+   Modeling editors of Virginia-local articles (small towns, schools,
+   highways) gives a model-based estimate rather than a count — the most
+   interesting ML direction.
+6. **Wikimedia Community Insights survey** — published aggregate editor
+   demographics, useful for framing (country-level only).
+7. **Formal WMF research collaboration** — the
+   [Wikimedia Research team](https://research.wikimedia.org/) grants
+   vetted researchers access to non-public data under privacy agreements;
+   the only route to a true state-level number.
 
 ## Caveats
 
