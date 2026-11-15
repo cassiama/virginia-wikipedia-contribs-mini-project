@@ -1,7 +1,7 @@
 # How many Wikipedia contributors are from Virginia?
 
 A mini data science project fact-checking a
-[YouTube comment](https://www.youtube.com/watch?v=aFHxsS6uv5g&lc=UgzPMAPWOXq9htO8tOZ4AaABAg.ACssRWZFXwJACuJMHlcyQe)
+YouTube comment
 (a reply on TREY the Explainer's *"The Rarest Signature"*, under a comment
 praising Wikipedia's citations) that claimed:
 
@@ -115,3 +115,14 @@ their user page), include dormant accounts, and reflect en-wiki only. The
 numbers answer "how many editors *publicly say* they're from Virginia" — the
 best available real proxy for a question Wikimedia deliberately doesn't
 publish state-level data on.
+
+## License
+
+The code and notebook are released under the [MIT License](LICENSE).
+
+The data under `data/` keeps its original terms: the Wikipedia-derived files
+(`data/raw/category_members/`, `data/virginia_wikipedians.csv`,
+`data/wikipedians_by_state.csv`) come from English Wikipedia via the MediaWiki
+API and are available under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the US Census
+Bureau files are public domain.
