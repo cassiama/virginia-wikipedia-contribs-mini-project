@@ -33,7 +33,7 @@ CENSUS_URL = (
 )
 USER_AGENT = (
     "VirginiaWikipediansResearch/0.1 "
-    "(https://github.com/chancelorassiamah; assiamah.ch@gmail.com) "
+    "(https://github.com/cassiama; assiamah.ch@gmail.com) "
     "python-requests"
 )
 REQUEST_PAUSE_S = 0.15
